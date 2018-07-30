@@ -61,36 +61,7 @@ client.on('message', function(msg) {
     }
   });
 
-  client.on('message', message => {
-    if (message.content.startsWith(prefix + "id")) {
-var args = message.content.split(" ").slice(1);
-let user = message.mentions.users.first();
-var men = message.mentions.users.first();
- var heg;
- if(men) {
-     heg = men
- } else {
-     heg = message.author
- }
-var mentionned = message.mentions.members.first();
-  var h;
- if(mentionned) {
-     h = mentionned
- } else {
-     h = message.member
- }
-        moment.locale('ar-TN');
-var id = new  Discord.RichEmbed()
-.setColor("RANDOM")
-.addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)
-.addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true)
-.addField(": النك نيم",`${h.nickname}`, true) .addField(": #",heg.discriminator, true)
-.addField(`: البلينق`,`${h.presence.game && h.presence.game.name || '-'}`,true) .addField(': الحالة',`${h.presence.status}`,true)
-.addField(`: الرتب`, `${message.guild.members.get(h.id).roles.map(r => `\`${r.name}\``).slice(1).join('\n') || 'لايوجد رتب'}`,true)                                                    
-.setThumbnail(heg.avatarURL);
-message.channel.send(id)
-}       });
-
+    
   
 	const developers = ["447727056617340928","ايدي حق مطورين اخرين",""]
 const adminprefix = "$";
@@ -145,65 +116,17 @@ client.on('message', message =>{
 });
 
   client.on('message', message => {
-if(message.content.startsWith('$discrim') ) {
-     if(!message.channel.guild) return message.reply('** This command only for servers **')
-          var args = message.content.split(" ").slice(1);
-    let sent = 0
-    let count = 1;
-    
-      if(args){
-client.users.filter(u => u.discriminator == args[0]).forEach(u => {
-    if(sent > 4){
-     return
-    }
-    sent = sent + 1
-      message.channel.send(`
-
-      ** ${count}➥ ${u.tag}**
-         
-      `)
-      count++;
-})
-}
-}
-if(message.content ===('-discrim') ) {
-     if(!message.channel.guild) return message.reply('** This command only for servers **')
-  let sent = 0
-    let count = 1;
-          
-
-client.users.filter(u => u.discriminator == message.author.discriminator).forEach(u => {
-    if(sent > 4){
-        return
-    }
-    sent = sent + 1
-      message.channel.send(`
-
-      ** ${count}➥ ${u.tag}**
-         
-      `)
-      count++;
+            if(!message.channel.guild) return;
+let args = message.content.split(' ').slice(1).join(' ');
+if (message.content.startsWith('$bcall')){
+ if (message.author.id !== 'هنا') return message.reply('** هذا الأمر قفط لصاحب البوت و شكراًً **')
+ if(!message.author.id === 'هنا') return;
+message.channel.sendMessage('جار ارسال الرسالة |✅')
+client.users.forEach(m =>{
+m.sendMessage(args)
 })
 }
 });
-
-
-  
- client.on('message', message => {
-  const port = '25565'
-  if(message.content.startsWith('$mcstats')) {
- const args = message.content.split(" ").slice(1).join(" ")
-    if (!args) return message.channel.send("** يجب كتابة ايدي السيرفر . **");
-        let embed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setThumbnail(`https://api.minetools.eu/favicon/${args}/25565`)
-        .addField("📜 اسم السيرفر",`${args}`,true)
-        .addField("🌐 بورت السيرفر",`${port}`)
-        .setImage(`http://status.mclive.eu/${args}/${args}/25565/banner.png`)
-        .setFooter(`S Bot.`)
-                .setTimestamp()
-    message.channel.send(embed)      
-}})
 
   
 
