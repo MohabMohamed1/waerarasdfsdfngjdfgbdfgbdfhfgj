@@ -554,7 +554,7 @@ client.on('message', msg => {
 
 
 client.on('message', message => {
-   if(message.content.startsWith(prefix + "دعوات")) {
+   if(message.content.startsWith(prefix + "invites")) {
     message.guild.fetchInvites().then(invs => {
       let user = message.mentions.users.first() || message.author
       let personalInvites = invs.filter(i => i.inviter.id === user.id);
@@ -856,8 +856,89 @@ client.on('message', function(message) {
     }
 });
 
-
+client.on('message', message => {
+            if (message.content.startsWith(prefix + "help")) {
+     let embed = new Discord.RichEmbed()
+.setThumbnail(message.author.avatarURL)
+.addField('     **$roll** ' ,' **لسحب رقم معين قرعه** ')
+.addField('     **$member**  ' ,' **لمعرفه حاله الاعضاء** ')
+.addField('     **$bc** ' , '**للبرودكاست**') 
+.addField('     **$ser-av** ' , '**لرؤيه صوره السيرفر**') 
+.addField('     **$mc** ' ,' **لاقفال الشات**')
+.addField('     **لرؤيه عدد المبندين من السيرفر** ' , '**$bans**')
+.addField('     **لعمل ريبورت لشخص** ' ,' **$report** ')
+.addField('     **$clear ** ' ,' **  لمسح الشات بدون رقم  ** ')
+.addField('     **$user ** ' ,' **  لمعرفه معلوماتك  ** ')
+     .addField('     **$inv ** ' ,' **  لدعوه البوت ** ')
+      .addField('     **$invites ** ' ,' ** لمعرفه كم انت دعوت اشخاص للسيرفر ** ')
+      .addField('     **$helpgames ** ' ,' ** لمعرفه اوامر الالعاب  ** ')
+      .addField('     **$roles ** ' ,' **  لمعرفه رتب السيرفر ** ')
+    .addField('     **Music ** ' ,' ** الاغاني ** ')
+      .addField('     **$play ** ' ,' **  لتشغيل الاغنيه ** ')
+      .addField('     **$pause ** ' ,' **  لايقاف الاغنيه ** ')
+      .addField('     **$vol ** ' ,' **  لرفع وتقليل الصوت ** ')
+      .addField('     **$skip ** ' ,' **  لتخطي الاغنيه ** ')
+      .addField('     **$reusme ** ' ,' **  لتكمله الاغنيه بعد الايقاف ** ')
+           .addField('     **soon ** ' ,' **  اومر اكثر قريبا ** ')
+.setColor('#7d2dbe')
+  message.channel.sendEmbed(embed);
+    }
+});
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
