@@ -145,16 +145,6 @@ client.on('message', message =>{
 });
 
   client.on('message', message => {
-    if(message.content == '$bans'){
-        message.guild.fetchBans().then(bans => {
-            bans.forEach(user => {
-               message.channel.send('\`#\` <@'+ user.id + '>');
-            });
-        });
-    }
-});
-
-  client.on('message', message => {
 if(message.content.startsWith('$discrim') ) {
      if(!message.channel.guild) return message.reply('** This command only for servers **')
           var args = message.content.split(" ").slice(1);
@@ -197,15 +187,7 @@ client.users.filter(u => u.discriminator == message.author.discriminator).forEac
 }
 });
 
-  client.on('message',async message => {
-if(message.content === '$unbanall') {
-message.guild.fetchBans().then(ba => {
-ba.forEach(ns => {
-message.guild.unban(ns);
-});
-});
-}
-});
+
   
  client.on('message', message => {
   const port = '25565'
