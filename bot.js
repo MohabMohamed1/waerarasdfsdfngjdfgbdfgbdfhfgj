@@ -390,25 +390,351 @@ ${prefix}queue ⇏ لمعرفة قآئمة التشغيل
    }); 
 
 
+ const cuttweet = [
+     'كت تويت ‏| تخيّل لو أنك سترسم شيء وحيد فيصبح حقيقة، ماذا سترسم؟',
+     'كت تويت | أكثر شيء يُسكِت الطفل برأيك؟',
+     'كت تويت | الحرية لـ ... ؟',
+     'كت تويت | قناة الكرتون المفضلة في طفولتك؟',
+     'كت تويت ‏| كلمة للصُداع؟',
+     'كت تويت ‏| ما الشيء الذي يُفارقك؟',
+     'كت تويت | موقف مميز فعلته مع شخص ولا يزال يذكره لك؟',
+     'كت تويت ‏| أيهما ينتصر، الكبرياء أم الحب؟',
+     'كت تويت | بعد ١٠ سنين ايش بتكون ؟',
+     'كت تويت ‏| مِن أغرب وأجمل الأسماء التي مرت عليك؟',
+     '‏كت تويت | عمرك شلت مصيبة عن شخص برغبتك ؟',
+     'كت تويت | أكثر سؤال وجِّه إليك مؤخرًا؟',
+     '‏كت تويت | ما هو الشيء الذي يجعلك تشعر بالخوف؟',
+     '‏كت تويت | وش يفسد الصداقة؟',
+     '‏كت تويت | شخص لاترفض له طلبا ؟',
+     '‏كت تويت | كم مره خسرت شخص تحبه؟.',
+     '‏كت تويت | كيف تتعامل مع الاشخاص السلبيين ؟',
+     '‏كت تويت | كلمة تشعر بالخجل اذا قيلت لك؟',
+     '‏كت تويت | جسمك اكبر من عٌمرك او العكسّ ؟!',
+     '‏كت تويت |أقوى كذبة مشت عليك ؟',
+     '‏كت تويت | تتأثر بدموع شخص يبكي قدامك قبل تعرف السبب ؟',
+     'كت تويت | هل حدث وضحيت من أجل شخصٍ أحببت؟',
+     '‏كت تويت | أكثر تطبيق تستخدمه مؤخرًا؟',
+     '‏كت تويت | ‏اكثر شي يرضيك اذا زعلت بدون تفكير ؟',
+     '‏كت تويت | وش محتاج عشان تكون مبسوط ؟',
+     '‏كت تويت | مطلبك الوحيد الحين ؟',
+     '‏كت تويت | هل حدث وشعرت بأنك ارتكبت أحد الذنوب أثناء الصيام؟',
+]
+
+ client.on('message', message => {
+     if (message.author.bot) return;
+   if (message.content.startsWith("$كت تويت")) {
+                if(!message.channel.guild) return message.reply('** This command only for servers**');
+  var embed = new Discord.RichEmbed()
+  .setColor('RANDOM')
+   .setThumbnail(message.author.avatarURL) 
+ .addField('لعبه كت تويت' ,
+  `${cuttweet[Math.floor(Math.random() * cuttweet.length)]}`)
+  message.channel.sendEmbed(embed);
+  console.log('[id] Send By: ' + message.author.username)
+    }
+});
+
+  var rebel = ["https://f.top4top.net/p_682it2tg6.png","https://e.top4top.net/p_682a1cus5.png","https://d.top4top.net/p_682pycol4.png","https://c.top4top.net/p_682vqehy3.png","https://b.top4top.net/p_682mlf9d2.png","https://a.top4top.net/p_6827dule1.png","https://b.top4top.net/p_682g1meb10.png","https://a.top4top.net/p_682jgp4v9.png","https://f.top4top.net/p_682d4joq8.png","https://e.top4top.net/p_6828o0e47.png","https://d.top4top.net/p_6824x7sy6.png","https://c.top4top.net/p_682gzo2l5.png","https://b.top4top.net/p_68295qg04.png","https://a.top4top.net/p_682zrz6h3.png","https://f.top4top.net/p_6828vkzc2.png","https://e.top4top.net/p_682i8tb11.png"]
+    client.on('message', message => {
+        if (message.author.bot) return;
+        var args = message.content.split(" ").slice(1);
+    if(message.content.startsWith(prefix + 'لو خيروك')) {
+         var cat = new Discord.RichEmbed()
+.setImage(rebel[Math.floor(Math.random() * rebel.length)])
+message.channel.sendEmbed(cat);
+    }
+});
+	  
+	  const kingmas = [
+   '*** منشن الجميع وقل انا اكرهكم. ***',
+'*** اتصل على امك و قول لها انك تحبها :heart:. ***',
+   '***     تصل على الوالده  و تقول لها  احب وحده.***',
+   '*** تتصل على شرطي تقول له عندكم مطافي.***',
+   '*** صور اي شيء يطلبه منك الاعبين.***',
+   '*** اكتب في الشات اي شيء يطلبه منك الاعبين في الخاص. ***',
+   '*** اتصل على احد من اخوياك  خوياتك , و اطلب منهم مبلغ على اساس انك صدمت بسيارتك.***',
+   '*** اعطي اي احد جنبك كف اذا مافيه احد جنبك اعطي نفسك و نبي نسمع صوت الكف.***',
+   '***  تروح عند شخص تقول له احبك. ***',
+   '***روح عند اي احد بالخاص و قول له انك تحبه و الخ.***',
+   '*** اذهب الى واحد ماتعرفه وقل له انا كيوت وابي بوسه. ***',
+   '*** روح الى اي قروب عندك في الواتس اب و اكتب اي شيء يطلبه منك الاعبين  الحد الاقصى 3 رسائل. ***',
+   '*** اذا انت ولد اكسر اغلى او احسن عطور عندك اذا انتي بنت اكسري الروج حقك او الميك اب حقك. ***',
+   '*** ذي المرة لك لا تعيدها.***',
+   '*** ارمي جوالك على الارض بقوة و اذا انكسر صور الجوال و ارسله في الشات العام.***',
+   '*** اتصل على ابوك و قول له انك رحت مع بنت و احين هي حامل..... ***',
+   '*** تكلم باللهجة السودانية الين يجي دورك مرة ثانية.***',
+   '***سو مشهد تمثيلي عن مصرية بتولد.***',
+   '*** قول نكتة اذا و لازم احد الاعبين يضحك اذا محد ضحك يعطونك ميوت الى ان يجي دورك مرة ثانية. ***',
+   '*** قول نكتة اذا و لازم احد الاعبين يضحك اذا محد ضحك يعطونك ميوت الى ان يجي دورك مرة ثانية.***',
+   '*** سامحتك خلاص مافيه عقاب لك :slight_smile:. ***',
+   '*** اذهب الى واحد ماتعرفه وقل له انا كيوت وابي بوسه.***',
+   '*** تتصل على الوالده  و تقول لها خطفت شخص. ***',
+   '*** روح اكل ملح + ليمون اذا مافيه اكل اي شيء من اختيار الي معك.  ***'
+]
+
+client.on('message', message => {
+    
+   if (message.author.bot) return;
+ if (message.content.startsWith(prefix + 'حكم')) {
+  var mariam= new Discord.RichEmbed()
+  .setTitle("لعبة حكم ..")
+  .setColor('RANDOM')
+  .setDescription(`${kingmas[Math.floor(Math.random() * kingmas.length)]}`)
+   message.channel.sendEmbed(mariam);
+   message.react(":thinking:")
+  }
+});
+	  
+	  const secreT = [
+  "**الحياة بكل ما فيها تقف دائمًا على حد الوسطية بين اتزان المعنى وضده من حب وكره وحق وباطل وعدل وظلم**.",
+  "**كى تعيش عليك ان تتقن فن التجاهل باحتراف**.",
+  "**لا تحزن على من اشعرك بان طيبتك غباء امام وقاحته**.",
+  "**هناك من يحلم بالنجاح وهناك من يستيقظ باكرا لتحقيقه**.",
+  "**ان تعالج ألمك بنفسك تلك هى القوة**.", 
+  "**الجميع يسمع ما تقول والاصدقاء ينصتون لما تقول وافضل الاصدقاء ينصتون لما اخفاه سكوتك**.", 
+  "**انتهى زمن الفروسية ، لم تنقرض الخيول بل انقرض الفرسان**.", 
+  "**ان تكون اخرسا عاقلا خير من ان تكون نطوقا جهولا**.", 
+  "**المناقشات العقيمة لا تنجب افكارا**.", 
+  "**نحن نكتب ما لا نستطيع ان نقول وما نريد ان يكون**.", 
+  "**نحن نكتب ما لا نستطيع ان نقول وما نريد ان يكون**.", 
+]
+
+client.on('message', message => {
+     if (message.author.bot) return;
+   if (message.content.startsWith("$خواطر")) {
+                if(!message.channel.guild) return message.reply('** This command only for servers**');
+  var embed = new Discord.RichEmbed()
+  .setColor('RANDOM')
+
+   .setThumbnail(message.author.avatarURL) 
+ .addField('لعبه خواطر' ,
+  `${secreT[Math.floor(Math.random() * secreT.length)]}`)
+  message.channel.sendEmbed(embed);
+  console.log('[id] Send By: ' + message.author.username)
+    }
+});
+
+  client.on('message', message => {
+    if (message.author.bot) return;
+     if (message.content === "$helpgames") {
+  let embed = new Discord.RichEmbed()
+          .setAuthor(message.author.username, message.author.avatarURL)
+           .setThumbnail(message.author.avatarURL)
+                 .setTimestamp()
+    .setDescription(`
+***
+:white_small_square:  ( اوامر الالعاب ***
+**
+
+:small_orange_diamond:  للعب لعبة كت تويت
+$كت تويت
+:small_orange_diamond:  للعب لعبة حكم
+$حكم
+:small_orange_diamond:  للعب لعبة خواطر
+$خواطر
+:small_orange_diamond: للعب لعبة لو خيروك
+$لو خيروك
+ ----
+https://discord.gg/fQJqK7p رابط السيرف رابط البوت
+----------
+**
+
+`)
+.setColor('RANDOM')
+message.author.sendEmbed(embed)
+}
+});
+
+client.on('message', msg => {
+      if(!msg.channel.guild) return;
+    if(msg.content.startsWith (prefix  + 'helpgames')) {
+    msg.reply('**:runner: شيك علي الخاص**');
+  }
+});
 
 
+client.on('message', message => {
+   if(message.content.startsWith(prefix + "دعوات")) {
+    message.guild.fetchInvites().then(invs => {
+      let user = message.mentions.users.first() || message.author
+      let personalInvites = invs.filter(i => i.inviter.id === user.id);
+      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+message.channel.send(`${user} لقد قمت بدعوه ${inviteCount} دعوه.`);
+});
+  }
+});
+
+client.on('message', message => {
+        if (message.author.id === client.user.id) return;
+        if (message.guild) {
+       let embed = new Discord.RichEmbed()
+        let args = message.content.split(' ').slice(1).join(' ');
+    if(message.content.split(' ')[0] == prefix + 'bc') {
+        if (!args[1]) {
+    message.channel.send("**.bc <message>**");
+    return;
+    }
+            message.guild.members.forEach(m => {
+       if(!message.member.hasPermission('ADMINISTRATOR')) return;
+                var bc = new Discord.RichEmbed()
+                .setAuthor(message.author.username, message.author.avatarURL)
+                .addField('** الـسيرفر**', `${message.guild.name}`,true)
+                .addField(' **الـمرسل **', `${message.author.username}#${message.author.discriminator}`,true)
+                .addField(' **الرسالة** ', args)
+                .setThumbnail(message.guild.iconURL)
+                .setColor('RANDOM')
+                m.send(`${m}`,{embed: bc});
+            });
+            const AziRo = new Discord.RichEmbed()
+            .setAuthor(message.author.username, message.author.avatarURL)   
+            .setTitle('✔️ | جاري ارسال رسالتك ') 
+            .addBlankField(true)
+            .addField('👥 | عدد الاعضاء المرسل لهم ', message.guild.memberCount , true)        
+            .addField('📋| الرسالة ', args)
+            .setColor('RANDOM')  
+            message.channel.sendEmbed(AziRo);          
+        }
+        } else {
+            return;
+        }
+});  
 
 
+ client.on('message', message => {
+  const port = '25565'
+  if(message.content.startsWith('$mcstats')) {
+ const args = message.content.split(" ").slice(1).join(" ")
+    if (!args) return message.channel.send("** يجب كتابة ايدي السيرفر . **");
+        let embed = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .setThumbnail(`https://api.minetools.eu/favicon/${args}/25565`)
+        .addField("📜 اسم السيرفر",`${args}`,true)
+        .addField("🌐 بورت السيرفر",`${port}`)
+        .setImage(`http://status.mclive.eu/${args}/${args}/25565/banner.png`)
+        .setFooter(`S Bot.`)
+                .setTimestamp()
+    message.channel.send(embed)      
+}})
 
+  const math = require('math-expression-evaluator');
+const stripIndents = require('common-tags').stripIndents;
 
+client.on('message', msg => {
+if (msg.content.startsWith(prefix + 'cal')) {
+  let args = msg.content.split(" ").slice(1);
+      const question = args.join(' ');
+  if (args.length < 1) {
+      msg.reply('**من فضلك .. قم بكتابة سؤال **.');
+} else {    let answer;
+  try {
+      answer = math.eval(question);
+  } catch (err) {
+      return msg.reply(`Error: ${err}`);
+  }
 
+  const embed = new Discord.RichEmbed()
+  .setThumbnail('https://banner2.kisspng.com/20180215/ade/kisspng-office-supplies-animation-calculator-5a85e764e3aa68.4914103215187249649325.jpg')
+.setDescription(`**
+ السؤال يقولك :thinking:  : ${question}
 
+ طبعا الاجابة :writing_hand: : ${answer}**
+`)
+  msg.channel.send(embed)
+  }
+};
+});
 
+  client.on('message', message => {
+          
 
+           if (message.content.startsWith(prefix + "user")) {
+                     if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات ❌`);
 
+                message.guild.fetchInvites().then(invs => {
+      let member = client.guilds.get(message.guild.id).members.get(message.author.id);
+      let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
+      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+      var moment = require('moment');
+      var args = message.content.split(" ").slice(1);
+let user = message.mentions.users.first();
+var men = message.mentions.users.first();
+ var heg;
+ if(men) {
+     heg = men
+ } else {
+     heg = message.author
+ }
+var mentionned = message.mentions.members.first();
+  var h;
+ if(mentionned) {
+     h = mentionned
+ } else {
+     h = message.member
+ }
+        moment.locale('ar-TN');
+      var id = new  Discord.RichEmbed()
+       
+    .setColor("#0a0909")
+ .setThumbnail(message.author.avatarURL)
+.addField(': تاريخ دخولك للديسكورد',` \`${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} \`**\n ${moment(heg.createdTimestamp).fromNow()}**` ,true) 
+.addField(': تاريخ دخولك لسيرفرنا', `\`${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')}  \` **\n ${moment(h.joinedAt).fromNow()} **`, true)
 
+.setFooter(message.author.username,'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')  
+    message.channel.sendEmbed(id);
+})
+}
+    
 
-
-
-
-
-
-
+         
+     });
+  
+client.on('message', message => {//By Codes , ' ّEpicEdiTeDّ#4968
+              if(!message.channel.guild) return;//By Codes , ' ّEpicEdiTeDّ#4968
+    var prefix = "$";//By Codes , ' ّEpicEdiTeDّ#4968
+    if(message.content.startsWith('$bc')) {//By Codes , ' ّEpicEdiTeDّ#4968
+    if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للإدارة**').then(m => m.delete(5000));//By Codes , ' ّEpicEdiTeDّ#4968
+  if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية لاستعمال هاذا الأمر** //By Codes , ' ّEpicEdiTeDّ#4968`ADMINISTRATOR`' );//By Codes , ' ّEpicEdiTeDّ#4968
+    let args = message.content.split(" ").join(" ").slice(2 + prefix.length);//By Codes , ' ّEpicEdiTeDّ#4968
+    let copy = "S Bot";//By Codes , ' ّEpicEdiTeDّ#4968
+    let request = `Requested By ${message.author.username}`;//By Codes , ' ّEpicEdiTeDّ#4968
+    if (!args) return message.reply('**يجب عليك كتابة شيئ لإرسال البرودكاست**');message.channel.send(`**هل أنت متأكد من الإرسال؟ \nمحتوى البرودكاست:** \` ${args}\``).then(msg => {//By Codes , ' ّEpicEdiTeDّ#4968
+    msg.react('✅')//By Codes , ' ّEpicEdiTeDّ#4968
+    .then(() => msg.react('❌'))//By Codes , ' ّEpicEdiTeDّ#4968
+    .then(() =>msg.react('✅'))//By Codes , ' ّEpicEdiTeDّ#4968
+ 
+    let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;//By Codes , ' ّEpicEdiTeDّ#4968
+    let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;//By Codes , ' ّEpicEdiTeDّ#4968
+          let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });//By Codes , ' ّEpicEdiTeDّ#4968
+    let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });//By Codes , ' ّEpicEdiTeDّ#4968
+    reaction1.on("collect", r => {//By Codes , ' ّEpicEdiTeDّ#4968
+    message.channel.send(`**☑ |   لقد تم ارسال الرسالة لـ ${message.guild.members.size} عضوآ**`).then(m => m.delete(5000));//By Codes , ' ّEpicEdiTeDّ#4968
+    message.guild.members.forEach(m => {//By Codes , ' ّEpicEdiTeDّ#4968
+    var bc = new//By Codes , ' ّEpicEdiTeDّ#4968
+       Discord.RichEmbed()//By Codes , ' ّEpicEdiTeDّ#4968
+       .setColor('RANDOM')//By Codes , ' ّEpicEdiTeDّ#4968
+       .setDescription(`البرودكاست :mega:
+**:shield: السيرفر : ** ${message.guild.name}
+** :thinking:  المرسل : ** ${message.author.username}
+**  الرسالة : ** ${args}
+ 
+ 
+ 
+ 
+        `)//By Codes , ' ّEpicEdiTeDّ#4968
+         .setTimestamp()//By Codes , ' ّEpicEdiTeDّ#4968
+         .setFooter('S Bot' , 'https://cdn.discordapp.com/avatars/465885551329804288/55614337cfb9813916a60383469736d9.jpg?size=128')
+    m.send({ embed: bc })
+    msg.delete();//By Codes , ' ّEpicEdiTeDّ#4968
+    })//By Codes , ' ّEpicEdiTeDّ#4968
+    })//By Codes , ' ّEpicEdiTeDّ#4968
+    reaction2.on("collect", r => {//By Codes , ' ّEpicEdiTeDّ#4968
+    message.channel.send(`**تم الغاء البرودكاست :x:.**`).then(m => m.delete(5000));//By Codes , ' ّEpicEdiTeDّ#4968//By Codes , msg.delete();//By Codes , ' ّEpicEdiTeDّ#496
+    })
+    })//By Codes , ' ّEpicEdiTeDّ#4968
+    }
+    });//By Codes , ' ّEpicEdiTeDّ#4968//By Codes , ' ّEpicEdiTeDّ#4968
+ 
+//By Codes , ' ّEpicEdiTeDّ#4968
 
 
 
