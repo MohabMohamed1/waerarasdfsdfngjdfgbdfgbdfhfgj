@@ -273,15 +273,6 @@ var mentionned = message.mentions.members.first();
 })
 }
 
-  client.on('antiFiredKhyoo', (guild, member) >{
-if(guild.has(member.khyo).exist) {
-member.ban({
-reason: ممنوع مولعين خيو
-});
-} else {
-return;
-}
-});
   
 
 
