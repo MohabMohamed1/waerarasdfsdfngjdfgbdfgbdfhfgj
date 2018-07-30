@@ -882,6 +882,7 @@ client.on('message', message => {
            .addField('     **$server ** ' ,' **  لمعرفه معلومات عن السيرفر ** ')
      .addField('     **$id ** ' ,' **  الايدي ** ')
      .addField('     **$cc ** ' ,' **  لانشاء 100 لون مرتب ** ')
+      .addField('     **$move all ** ' ,' **   لنقل اي شخص الى رومك   ** ')
 .setColor('#7d2dbe')
   message.channel.sendEmbed(embed);
     }
@@ -1023,9 +1024,62 @@ message.channel.send({embed});
 }
 });
 
+ client.on('message', async message => {
+            if(message.content.includes('discord.gg')){ 
+                if(message.member.hasPermission("MANAGE_GUILD")) return;
+        if(!message.channel.guild) return;
+        message.delete()
+          var command = message.content.split(" ")[0];
+    let muterole = message.guild.roles.find(`name`, "Muted");
+    if(!muterole){
+      try{
+        muterole = await message.guild.createRole({
+          name: "Muted",
+          color: "#000000",
+          permissions:[]
+        })
+        message.guild.channels.forEach(async (channel, id) => {
+          await channel.overwritePermissions(muterole, {
+            SEND_MESSAGES: false,
+            ADD_REACTIONS: false
+          });
+        });
+      }catch(e){
+        console.log(e.stack);
+      }
+    }
+           if(!message.channel.guild) return message.reply('** This command only for servers**');
+     message.member.addRole(muterole);
+    const embed500 = new Discord.RichEmbed()
+      .setTitle("Muted Ads")
+            .addField(`**  You Have Been Muted **` , `**Reason : Sharing Another Discord Link**`)
+            .setColor("c91616")
+            .setThumbnail(`${message.author.avatarURL}`)
+            .setAuthor(message.author.username, message.author.avatarURL)
+        .setFooter(`${message.guild.name} `)
+     message.channel.send(embed500)
+     message.author.send('` انت معاقب ميوت شاتي بسبب نشر سرفرات ان كان عن طريق الخطا **ف** تكلم مع الادارة `');
+   
+       
+    }
+})
+
+ client.on('message', message => {
+    if(message.content.startsWith(prefix + 'move all')) {
+     if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send('**لايوجد لديك صلاحية سحب الأعضاء**');
+       if(!message.guild.member(client.user).hasPermission("MOVE_MEMBERS")) return message.reply("**لايوجد لدي صلاحية السحب**");
+    if (message.member.voiceChannel == null) return message.channel.send(`**الرجاء الدخول لروم صوتي**`)
+     var author = message.member.voiceChannelID;
+     var m = message.guild.members.filter(m=>m.voiceChannel)
+     message.guild.members.filter(m=>m.voiceChannel).forEach(m => {
+     m.setVoiceChannel(author)
+     })
+     message.channel.send(`**تم سحب جميع الأعضاء الي الروم الصوتي حقك.**`)
 
 
-
+     }
+       });
+  
 
 
 
