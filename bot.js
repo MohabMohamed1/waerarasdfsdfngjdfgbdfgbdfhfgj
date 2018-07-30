@@ -893,17 +893,6 @@ client.on('message', function(message) {
 });
 
 
-	  client.on('message', message => {
-    if (message.content === '$roless') {
-        var roles = message.guild.roles.map(roles => `${roles.name}, `).join(' ')
-        const embed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .addField('Roles:',`**[${roles}]**`)
-        message.channel.sendEmbed(embed);
-    }
-});
-
-
 	   client.on('message', message => {
        if (message.content.startsWith(prefix + 'botserver')) {
      let msg =  client.guilds.map(guild => `**${guild.name}** عدد الاعضاء: ${guild.memberCount}`).join('\n');
