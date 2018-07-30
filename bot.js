@@ -91,16 +91,137 @@ var id = new  Discord.RichEmbed()
 message.channel.send(id)
 }       });
 
+  
+	const developers = ["447727056617340928","ايدي حق مطورين اخرين",""]
+const adminprefix = "$";
+client.on('message', message => {
+    var argresult = message.content.split(` `).slice(1).join(' ');
+      if (!developers.includes(message.author.id)) return;
+      
+  if (message.content.startsWith(adminprefix + 'ply')) {
+    client.user.setGame(argresult);
+      message.channel.send(`**✅   ${argresult}**`)
+  } else 
+     if (message.content === (adminprefix + "leave")) {
+    message.guild.leave();        
+  } else  
+  if (message.content.startsWith(adminprefix + 'wt')) {
+  client.user.setActivity(argresult, {type:'WATCHING'});
+      message.channel.send(`**✅   ${argresult}**`)
+  } else 
+  if (message.content.startsWith(adminprefix + 'ls')) {
+  client.user.setActivity(argresult , {type:'LISTENING'});
+      message.channel.send(`**✅   ${argresult}**`)
+  } else 
+  if (message.content.startsWith(adminprefix + 'st')) {
+    client.user.setGame(argresult, "https://www.twitch.tv/idk");
+      message.channel.send(`**✅**`)
+  }
+  if (message.content.startsWith(adminprefix + 'setname')) {
+  client.user.setUsername(argresult).then
+      message.channel.send(`Changing The Name To ..**${argresult}** `)
+} else
+if (message.content.startsWith(adminprefix + 'setavatar')) {
+  client.user.setAvatar(argresult);
+    message.channel.send(`Changing The Avatar To :**${argresult}** `);
+}
+});
 
+  var AsciiTable = require('ascii-data-table').default
+client.on('message', message =>{
 
+    if(message.content == "$roles"){
+        var 
+        ros=message.guild.roles.size,
+        data = [['Rank', 'RoleName']]
+        for(let i =0;i<ros;i++){
+            if(message.guild.roles.array()[i].id !== message.guild.id){
+         data.push([i,`${message.guild.roles.filter(r => r.position == ros-i).map(r=>r.name)}`])
+        }}
+        let res = AsciiTable.table(data)
 
+        message.channel.send(`**\`\`\`xl\n${res}\`\`\`**`);
+    }
+});
 
+  client.on('message', message => {
+    if(message.content == '$bans'){
+        message.guild.fetchBans().then(bans => {
+            bans.forEach(user => {
+               message.channel.send('\`#\` <@'+ user.id + '>');
+            });
+        });
+    }
+});
 
+  client.on('message', message => {
+if(message.content.startsWith('$discrim') ) {
+     if(!message.channel.guild) return message.reply('** This command only for servers **')
+          var args = message.content.split(" ").slice(1);
+    let sent = 0
+    let count = 1;
+    
+      if(args){
+client.users.filter(u => u.discriminator == args[0]).forEach(u => {
+    if(sent > 4){
+     return
+    }
+    sent = sent + 1
+      message.channel.send(`
 
+      ** ${count}➥ ${u.tag}**
+         
+      `)
+      count++;
+})
+}
+}
+if(message.content ===('-discrim') ) {
+     if(!message.channel.guild) return message.reply('** This command only for servers **')
+  let sent = 0
+    let count = 1;
+          
 
+client.users.filter(u => u.discriminator == message.author.discriminator).forEach(u => {
+    if(sent > 4){
+        return
+    }
+    sent = sent + 1
+      message.channel.send(`
 
+      ** ${count}➥ ${u.tag}**
+         
+      `)
+      count++;
+})
+}
+});
 
-
+  client.on('message',async message => {
+if(message.content === '$unbanall') {
+message.guild.fetchBans().then(ba => {
+ba.forEach(ns => {
+message.guild.unban(ns);
+});
+});
+}
+});
+  
+ client.on('message', message => {
+  const port = '25565'
+  if(message.content.startsWith('$mcstats')) {
+ const args = message.content.split(" ").slice(1).join(" ")
+    if (!args) return message.channel.send("** يجب كتابة ايدي السيرفر . **");
+        let embed = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .setThumbnail(`https://api.minetools.eu/favicon/${args}/25565`)
+        .addField("📜 اسم السيرفر",`${args}`,true)
+        .addField("🌐 بورت السيرفر",`${port}`)
+        .setImage(`http://status.mclive.eu/${args}/${args}/25565/banner.png`)
+        .setFooter(`S Bot.`)
+                .setTimestamp()
+    message.channel.send(embed)      
+}})
 
 
 
