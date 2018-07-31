@@ -384,7 +384,7 @@ ${prefix}np ⇏ لمعرفة الأغنية المشغلة حآليا
 ${prefix}queue ⇏ لمعرفة قآئمة التشغيل
 
  `)//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
-   message.channel.sendEmbed(embed)//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
+   message.channel.sendEmbed(embed)//by ,$ ReBeL ء , 🔕#4777 'E bot'
     
    }
    }); 
