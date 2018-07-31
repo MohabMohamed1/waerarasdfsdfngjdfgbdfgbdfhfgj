@@ -1205,7 +1205,6 @@ client.on('message', async message => {
 });
 
 
-const client = new Discord.Client();
 const prefix = '$'
 var dat = JSON.parse("{}");
 function forEachObject(obj, func) {
