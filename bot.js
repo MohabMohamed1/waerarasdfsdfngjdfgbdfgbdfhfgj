@@ -1204,9 +1204,9 @@ client.on('message', async message => {
   }
 });
 
-const Discord = require("discord.js");
+
 const client = new Discord.Client();
-const prefix = 'برفكس'
+const prefix = '$'
 var dat = JSON.parse("{}");
 function forEachObject(obj, func) {
     Object.keys(obj).forEach(function (key) { func(key, obj[key]) })
