@@ -883,6 +883,7 @@ client.on('message', message => {
      .addField('     **$id ** ' ,' **  الايدي ** ')
      .addField('     **$cc ** ' ,' **  لانشاء 100 لون مرتب ** ')
       .addField('     **$move all ** ' ,' **   لنقل اي شخص الى رومك   ** ')
+     .addField('     **$channels ** ' ,' **   لرؤيه كل الرومات يلي بالسيرفر  ** ')
 .setColor('#7d2dbe')
   message.channel.sendEmbed(embed);
     }
@@ -1080,12 +1081,200 @@ message.channel.send({embed});
      }
        });
   
+client.on('message',async message =>{
+    if(message.content.startsWith(prefix + "channels")) {
+        let i = 1;
+        let embed = new Discord.RichEmbed()
+        .setAuthor(message.author.username, message.author.avatarURL)
+        .setTitle(message.guild.name)
+        .setThumbnail(message.guild.iconURL)
+        .setDescription(message.guild.channels.map(c => `\`${i++}\` - **${c.name}**`))
+        .setFooter(message.guild.channels.size + ' Channels in the server!');
+        message.channel.send(embed).then(msg => {
+            msg.delete(25000);
+            message.delete(25000);
+        });
+    }
+});
 
+client.on('message', async message => {
+  let args = message.content.split(" ");
+  if(message.content.startsWith(prefix + "mute")) {
+    if(!message.member.hasPermission("MANAGE_ROLES")) return message.reply('**أنت لا تملك الخصائص اللازمة . يجب توفر خاصية `Manage Roles`**').then(msg => {
+      msg.delete(3500);
+      message.delete(3500);
+    });
 
+    if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply('**أنا لا املك الخصائص الكافية . يلزم خصائص `Manage Roles` للقيام بهذا الامر**').then(msg => {
+      msg.delete(3500);
+      message.delete(3500);
+    });
 
+    let mention = message.mentions.members.first();
+    if(!mention) return message.reply('**منشن عضو لأسكاته ( لأعطائة ميوت ) كتابي**').then(msg => {
+      msg.delete(3500);
+      message.delete(3500);
+    });
 
+    if(mention.highestRole.position >= message.guild.member(message.author).highestRole.positon) return message.reply('**لا يمكنك اعطاء لميوت شخص رتبته اعلى منك**').then(msg => {
+      msg.delete(3500);
+      message.delete(3500);
+    });
+    if(mention.highestRole.positon >= message.guild.member(client.user).highestRole.positon) return message.reply('**لا يمكنني اعطاء ميوت لشخص رتبته اعلى مني**').then(msg => {
+      msg.delete(3500);
+      message.delete(3500);
+    });
+    if(mention.id === message.author.id) return message.reply('**لا يمكنك اعطاء ميوت  لنفسك**').then(msg => {
+      msg.delete(3500);
+      message.delete(3500);
+    });
 
+    let duration = args[2];
+    if(!duration) return message.reply('**حدد وقت زمني لفك الميوت عن الشخص**').then(msg => {
+      msg.delete(3500);
+      message.delete(3500);
+    });
 
+    if(isNaN(duration)) return message.reply('**حدد وقت زمني صحيح**').then(msg => {
+      msg.delete(3500);
+      message.delete(3500);
+    });
+
+    let reason = message.content.split(" ").slice(3).join(" ");
+    if(!reason) reason = "غير محدد";
+
+    let thisEmbed = new Discord.RichEmbed()
+    .setAuthor(mention.user.username, mention.user.avatarURL)
+    .setTitle('تم اغطائك ميوت بسيرفر')
+    .setThumbnail(mention.user.avatarURL)
+    .addField('# - السيرفر',message.guild.name,true)
+    .addField('# - تم اعطائك ميوت بواسطة',message.author,true)
+    .addField('# - السبب',reason)
+
+    let role = message.guild.roles.find('name', 'Muted') || message.guild.roles.get(r => r.name === 'Muted');
+    if(!role) try {
+      message.guild.createRole({
+        name: "Muted",
+        permissions: 0
+      }).then(r => {
+        message.guild.channels.forEach(c => {
+          c.overwritePermissions(r , {
+            SEND_MESSAGES: false,
+            READ_MESSAGES_HISTORY: false,
+            ADD_REACTIONS: false
+          });
+        });
+      });
+    } catch(e) {
+      console.log(e.stack);
+    }
+    mention.addRole(role).then(() => {
+      mention.send(thisEmbed);
+      message.channel.send(`**:white_check_mark: ${mention.user.username} muted in the server ! :zipper_mouth:  **  `);
+      mention.setMute(true);
+    });
+    setTimeout(() => {
+      if(duration === 0) return;
+      if(!mention.has.roles(role)) return;
+      mention.setMute(false);
+      mention.removeRole(role);
+      message.channel.send(`**:white_check_mark: ${mention.user.username} unmuted in the server ! :neutral_face:  **  `);
+    },duration * 60000);
+  } else if(message.content.startsWith(prefix + "unmute")) {
+    let mention = message.mentions.members.first();
+    let role = message.guild.roles.find('name', 'Muted') || message.guild.roles.get(r => r.name === 'Muted');
+    if(!message.member.hasPermission("MANAGE_ROLES")) return message.reply('**أنت لا تملك الخصائص اللازمة . يجب توفر خاصية `Manage Roles`**').then(msg => {
+      msg.delete(3500);
+      message.delete(3500);
+    });
+
+    if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply('**أنا لا املك الخصائص الكافية . يلزم خصائص `Manage Roles` للقيام بهذا الامر**').then(msg => {
+      msg.delete(3500);
+      message.delete(3500);
+    });
+
+    if(!mention) return message.reply('**منشن الشخص لفك الميوت عنه**').then(msg => {
+      msg.delete(3500);
+      message.delete(3500);
+    });
+
+      mention.removeRole(role);
+      mention.setMute(false);
+      message.channel.send(`**:white_check_mark: ${mention.user.username} unmuted in the server ! :neutral_face:  **  `);
+  }
+});
+
+const Discord = require("discord.js");
+const client = new Discord.Client();
+const prefix = 'برفكس'
+var dat = JSON.parse("{}");
+function forEachObject(obj, func) {
+    Object.keys(obj).forEach(function (key) { func(key, obj[key]) })
+}
+client.on("ready", () => {
+    var guild;
+    while (!guild)
+        guild = client.guilds.find("name", "E bot Support")//حط اسم السرفر مكان eyad..
+    guild.fetchInvites().then((data) => {
+        data.forEach((Invite, key, map) => {
+            var Inv = Invite.code;
+            dat[Inv] = Invite.uses;
+        })
+    })
+})
+client.on("guildMemberAdd", (member) => {
+    let channel = member.guild.channels.find('name', 'الترحيب');// حط اسم الروم بدل codes
+    if (!channel) {
+        console.log("i have Error !!");
+        return;
+    }
+			 	         var currentTime = new Date(),
+		  hours = currentTime.getHours() + 4 ,
+          hours2 = currentTime.getHours() + 1 ,             
+		   minutes = currentTime.getMinutes(),             
+		   seconds = currentTime.getSeconds(),
+            Year = currentTime.getFullYear(),
+            Month = currentTime.getMonth() + 1,
+            Day = currentTime.getDate();
+             if(hours2 > 12) {
+               hours2 -= 12;
+            } else if(hours2 == 0) {
+                hours2 = "12";
+            
+            }  
+            var suffix = 'AM';
+            if (hours >= 12) {
+                suffix = 'PM';
+                hours = hours - 12;	
+            }
+            if (hours == 0) {
+                hours = 12;
+            }
+         var ee = member.user;
+		     var guild;
+    while (!guild)
+        guild = client.guilds.find("name", "E bot Support")//حط اسم السرفر مكان eyad..
+    guild.fetchInvites().then((data) => {
+        data.forEach((Invite, key, map) => {
+
+            var Inv = Invite.code;
+            if (dat[Inv])
+                if (dat[Inv] < Invite.uses) {
+                    console.log(3);
+                    console.log(`${member} joined over ${Invite.inviter}'s invite ${Invite.code}`)
+ee.send(`We Thank ${Invite.inviter}\nFor he has brought you into the server \nYou are logged in from this link https://discord.gg/${Invite.code}`);
+ channel.send({embed : new Discord.RichEmbed()
+       .setColor('RANDOM')
+       .setThumbnail(ee.avatarURL)
+       .setTitle(`**New Member !! **`)	
+       .setDescription(`1- Invited By : ${Invite.inviter} \n2- Link Invited : https://discord.gg/${Invite.code} \n3- Member Name : ${member} \n4- Member ID : ${member.id} \n5- Data : ${Day}-${Month}-${Year} \n6- Time : ${hours2}:${minutes}:${seconds} ${suffix}`)
+	   });
+            dat[Inv] = Invite.uses;
+ }
+         })
+    })
+
+	});
 
 
 
