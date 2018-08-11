@@ -1290,46 +1290,6 @@ message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
 }
 });
 
-client.on('message',async message => {
-  if(message.content.startsWith(prefix + "obc")) {
-    let filter = m => m.author.id === message.author.id;
-    let thisMessage;
-    let thisFalse;
-    message.channel.send(':regional_indicator_b::regional_indicator_c:| **ارسل الرسالة الان**').then(msg => {
-
-    let awaitM = message.channel.awaitMessages(filter, {
-      max: 1,
-      time: 20000,
-      errors: ['time']
-    })
-    .then(collected => {
-      collected.first().delete();
-      thisMessage = collected.first().content;
-      msg.edit(':regional_indicator_b::regional_indicator_c:| **هل انت متأكد؟**');
-      let awaitY = message.channel.awaitMessages(response => response.content === 'نعم' || 'لا' && filter,{
-        max: 1,
-        time: 20000,
-        errors: ['time']
-      })
-      .then(collected => {
-        if(collected.first().content === 'لا') {
-          msg.delete();
-          message.delete();
-          thisFalse = false;
-        }
-        if(collected.first().content === 'نعم') {
-          if(thisFalse === false) return;
-        message.guild.members.forEach(member => {
-          msg.edit(':regional_indicator_b::regional_indicator_c:| **جاري الارسال**');
-          collected.first().delete();
-          member.send(`${thisMessage}\n\n${member} ,\nتم الارسال من : ${message.guild.name}\n تم الارسال بواسطة : ${message.author.tag}`);
-        });
-        }
-      });
-    });
-    });
-  }
-});
 
 const translate = require('google-translate-api');   
 const Langs = ['afrikaans', 'albanian', 'amharic', 'arabic', 'armenian', 'azerbaijani', 'bangla', 'basque', 'belarusian', 'bengali', 'bosnian', 'bulgarian', 'burmese', 'catalan', 'cebuano', 'chichewa', 'chinese simplified', 'chinese traditional', 'corsican', 'croatian', 'czech', 'danish', 'dutch', 'english', 'esperanto', 'estonian', 'filipino', 'finnish', 'french', 'frisian', 'galician', 'georgian', 'german', 'greek', 'gujarati', 'haitian creole', 'hausa', 'hawaiian', 'hebrew', 'hindi', 'hmong', 'hungarian', 'icelandic', 'igbo', 'indonesian', 'irish', 'italian', 'japanese', 'javanese', 'kannada', 'kazakh', 'khmer', 'korean', 'kurdish (kurmanji)', 'kyrgyz', 'lao', 'latin', 'latvian', 'lithuanian', 'luxembourgish', 'macedonian', 'malagasy', 'malay', 'malayalam', 'maltese', 'maori', 'marathi', 'mongolian', 'myanmar (burmese)', 'nepali', 'norwegian', 'nyanja', 'pashto', 'persian', 'polish', 'portugese', 'punjabi', 'romanian', 'russian', 'samoan', 'scottish gaelic', 'serbian', 'sesotho', 'shona', 'sindhi', 'sinhala', 'slovak', 'slovenian', 'somali', 'spanish', 'sundanese', 'swahili', 'swedish', 'tajik', 'tamil', 'telugu', 'thai', 'turkish', 'ukrainian', 'urdu', 'uzbek', 'vietnamese', 'welsh', 'xhosa', 'yiddish', 'yoruba', 'zulu'];
