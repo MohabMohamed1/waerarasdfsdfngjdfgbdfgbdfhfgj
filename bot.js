@@ -600,91 +600,8 @@ client.on('message', message => {
 });  
 
 
- client.on('message', message => {
-  const port = '25565'
-  if(message.content.startsWith('$mcstats')) {
- const args = message.content.split(" ").slice(1).join(" ")
-    if (!args) return message.channel.send("** يجب كتابة ايدي السيرفر . **");
-        let embed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setThumbnail(`https://api.minetools.eu/favicon/${args}/25565`)
-        .addField("📜 اسم السيرفر",`${args}`,true)
-        .addField("🌐 بورت السيرفر",`${port}`)
-        .setImage(`http://status.mclive.eu/${args}/${args}/25565/banner.png`)
-        .setFooter(`S Bot.`)
-                .setTimestamp()
-    message.channel.send(embed)      
-}})
-
-  const math = require('math-expression-evaluator');
-const stripIndents = require('common-tags').stripIndents;
-
-client.on('message', msg => {
-if (msg.content.startsWith(prefix + 'cal')) {
-  let args = msg.content.split(" ").slice(1);
-      const question = args.join(' ');
-  if (args.length < 1) {
-      msg.reply('**من فضلك .. قم بكتابة سؤال **.');
-} else {    let answer;
-  try {
-      answer = math.eval(question);
-  } catch (err) {
-      return msg.reply(`Error: ${err}`);
-  }
-
-  const embed = new Discord.RichEmbed()
-  .setThumbnail('https://banner2.kisspng.com/20180215/ade/kisspng-office-supplies-animation-calculator-5a85e764e3aa68.4914103215187249649325.jpg')
-.setDescription(`**
- السؤال يقولك :thinking:  : ${question}
-
- طبعا الاجابة :writing_hand: : ${answer}**
-`)
-  msg.channel.send(embed)
-  }
-};
-});
-
   client.on('message', message => {
-          
-
-           if (message.content.startsWith(prefix + "user")) {
-                     if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات ❌`);
-
-                message.guild.fetchInvites().then(invs => {
-      let member = client.guilds.get(message.guild.id).members.get(message.author.id);
-      let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
-      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-      var moment = require('moment');
-      var args = message.content.split(" ").slice(1);
-let user = message.mentions.users.first();
-var men = message.mentions.users.first();
- var heg;
- if(men) {
-     heg = men
- } else {
-     heg = message.author
- }
-var mentionned = message.mentions.members.first();
-  var h;
- if(mentionned) {
-     h = mentionned
- } else {
-     h = message.member
- }
-        moment.locale('ar-TN');
-      var id = new  Discord.RichEmbed()
-       
-    .setColor("#0a0909")
- .setThumbnail(message.author.avatarURL)
-.addField(': تاريخ دخولك للديسكورد',` \`${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} \`**\n ${moment(heg.createdTimestamp).fromNow()}**` ,true) 
-.addField(': تاريخ دخولك لسيرفرنا', `\`${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')}  \` **\n ${moment(h.joinedAt).fromNow()} **`, true)
-
-.setFooter(message.author.username,'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')  
-    message.channel.sendEmbed(id);
-})
-}
-    
-
+  
          
      });
 
@@ -707,30 +624,6 @@ client.on('message', message => {
     .setTimestamp()
         message.guild.channels.find('report', 'report').sendEmbed(abod)
     message.reply('**شكرا على تبليغك**').then(msg => msg.delete(3000));
-    }
-});
-
-client.on('message', message => {
-
-     if (message.author.bot) return;
-    if (!message.channel.guild) return;
-    if (message.content.startsWith(prefix + 'mb')) {
-        if (!message.channel.guild) return;
-        let embed = new Discord.RichEmbed()
-            .setColor('RANDOM')
-            .setThumbnail(message.author.avatarURL)
-            .setFooter(message.author.username, message.author.avatarURL)
-
-        .setDescription(`**:battery: حالة اعضاء السيرفر**
-    
-**:green_heart: Online**  **[ ${message.guild.members.filter(m=>m.presence.status == 'online').size} ]**
-**:yellow_heart: Idle**       **[ ${message.guild.members.filter(m=>m.presence.status == 'idle').size} ]**  
-**:heart: DND**     **[ ${message.guild.members.filter(m=>m.presence.status == 'dnd').size} ]**
-**:black_heart: Offline** **[ ${message.guild.members.filter(m=>m.presence.status == 'offline').size} ]** `)
-
-        message.channel.send()
-
-        message.channel.sendEmbed(embed)
     }
 });
 
@@ -1205,74 +1098,7 @@ client.on('message', async message => {
   }
 });
 
-var dat = JSON.parse("{}");
-function forEachObject(obj, func) {
-    Object.keys(obj).forEach(function (key) { func(key, obj[key]) })
-}
-client.on("ready", () => {
-    var guild;
-    while (!guild)
-        guild = client.guilds.find("name", "E bot Support")//حط اسم السرفر مكان eyad..
-    guild.fetchInvites().then((data) => {
-        data.forEach((Invite, key, map) => {
-            var Inv = Invite.code;
-            dat[Inv] = Invite.uses;
-        })
-    })
-})
-client.on("guildMemberAdd", (member) => {
-    let channel = member.guild.channels.find('name', 'الترحيب');// حط اسم الروم بدل codes
-    if (!channel) {
-        console.log("i have Error !!");
-        return;
-    }
-			 	         var currentTime = new Date(),
-		  hours = currentTime.getHours() + 4 ,
-          hours2 = currentTime.getHours() + 1 ,             
-		   minutes = currentTime.getMinutes(),             
-		   seconds = currentTime.getSeconds(),
-            Year = currentTime.getFullYear(),
-            Month = currentTime.getMonth() + 1,
-            Day = currentTime.getDate();
-             if(hours2 > 12) {
-               hours2 -= 12;
-            } else if(hours2 == 0) {
-                hours2 = "12";
-            
-            }  
-            var suffix = 'AM';
-            if (hours >= 12) {
-                suffix = 'PM';
-                hours = hours - 12;	
-            }
-            if (hours == 0) {
-                hours = 12;
-            }
-         var ee = member.user;
-		     var guild;
-    while (!guild)
-        guild = client.guilds.find("name", "E bot Support")//حط اسم السرفر مكان eyad..
-    guild.fetchInvites().then((data) => {
-        data.forEach((Invite, key, map) => {
 
-            var Inv = Invite.code;
-            if (dat[Inv])
-                if (dat[Inv] < Invite.uses) {
-                    console.log(3);
-                    console.log(`${member} joined over ${Invite.inviter}'s invite ${Invite.code}`)
-ee.send(`We Thank ${Invite.inviter}\nFor he has brought you into the server \nYou are logged in from this link https://discord.gg/${Invite.code}`);
- channel.send({embed : new Discord.RichEmbed()
-       .setColor('RANDOM')
-       .setThumbnail(ee.avatarURL)
-       .setTitle(`**New Member !! **`)	
-       .setDescription(`1- Invited By : ${Invite.inviter} \n2- Link Invited : https://discord.gg/${Invite.code} \n3- Member Name : ${member} \n4- Member ID : ${member.id} \n5- Data : ${Day}-${Month}-${Year} \n6- Time : ${hours2}:${minutes}:${seconds} ${suffix}`)
-	   });
-            dat[Inv] = Invite.uses;
- }
-         })
-    })
-
-	});
 
   client.on('message' , ReBeL => {
 var prefix = "$";
