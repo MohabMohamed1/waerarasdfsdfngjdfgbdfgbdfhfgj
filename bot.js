@@ -180,7 +180,6 @@ client.on('message', async msg => { // eslint-disable-line
 
 		if (!permissions.has('EMBED_LINKS')) {
 			return msg.channel.sendMessage("**يجب توآفر برمشن `EMBED LINKS`لدي **")
-		}
 
 		if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
 			const playlist = await youtube.getPlaylist(url);
