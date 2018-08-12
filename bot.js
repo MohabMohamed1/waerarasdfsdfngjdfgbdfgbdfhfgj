@@ -1100,22 +1100,6 @@ client.on('message', async message => {
 
 
 
-  client.on('message' , ReBeL => {
-var prefix = "$";
-if(ReBeL.author.bot) return;
-if(ReBeL.channel.type == 'dm') return;
-if(ReBeL.content.startsWith(prefix + "احذف الالوان")) {
-ReBeL.guild.roles.filter(rebel => isNaN(rebel)).forEach(codes => codes.delete())
-}
-});
-  
- client.on('message', message => {
-        var  user = message.mentions.users.first() || message.author;
-    if (message.content.startsWith("$avatar")) {
-message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
-}
-});
- 
  
  
  
