@@ -1115,8 +1115,6 @@ ReBeL.guild.roles.filter(rebel => isNaN(rebel)).forEach(codes => codes.delete())
 message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
 }
 });
-
-   
  
  
  
