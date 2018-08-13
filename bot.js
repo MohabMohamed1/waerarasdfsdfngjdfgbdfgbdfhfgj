@@ -277,7 +277,7 @@ ${serverQueue.songs.map(song => `**${++index} -** ${song.title}`).join('\n')}
 	}
 
 	return undefined;
-});
+
 //by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
 async function handleVideo(video, msg, voiceChannel, playlist = false) {
 	const serverQueue = queue.get(msg.guild.id);
